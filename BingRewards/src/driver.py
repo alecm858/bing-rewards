@@ -113,12 +113,12 @@ class Driver:
                 break
             #driver not up to date with Chrome browser, try different ver
             except Exception as e:
-                Driver.__download_driver(path, system, driver_dl_index)
-                driver_dl_index += 1
-                if driver_dl_index > 3:
-                    try:
-                        path = "/usr/lib/chromium-browser/chromedriver"
-                    except:
+                if platform.machine() == "armv7l":
+                    path = "/usr/lib/chromium-browser/chromedriver"
+                else:
+                    Driver.__download_driver(path, system, driver_dl_index)
+                    driver_dl_index += 1
+                    if driver_dl_index > 3:
                         print('Tried downloading the ' + str(driver_dl_index) + ' most recent chrome drivers. None match current Chrome browser version')
                         print(e)
                         break

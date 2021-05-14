@@ -33,11 +33,11 @@ class Driver:
         # determine latest chromedriver version
         #version selection faq: http://chromedriver.chromium.org/downloads/version-selection
         try:
-            response = urlopen("https://chromedriver.chromium.org/downloads", context=ssl.SSLContext(ssl.PROTOCOL_TLSv1)).read()
+            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads", context=ssl.SSLContext(ssl.PROTOCOL_TLSv1)).read()
         except URLError as e:
-            response = urlopen("https://chromedriver.chromium.org/downloads").read()
+            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads").read()
         except ssl.SSLError as e:
-            response = urlopen("https://chromedriver.chromium.org/downloads").read()
+            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads").read()
         #download second latest version,most recent is sometimes not out to public yet
 
         latest_version = re.findall(b"ChromeDriver \d{2,3}\.0\.\d{4}\.\d+",response)[driver_dl_index].decode().split()[1]

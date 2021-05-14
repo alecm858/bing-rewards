@@ -33,11 +33,11 @@ class Driver:
         # determine latest chromedriver version
         #version selection faq: http://chromedriver.chromium.org/downloads/version-selection
         try:
-            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads", context=ssl.SSLContext(ssl.PROTOCOL_TLSv1)).read()
+            response = urlopen("https://chromedriver.chromium.org/downloads", context=ssl.SSLContext(ssl.PROTOCOL_TLSv1)).read()
         except URLError as e:
-            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads").read()
+            response = urlopen("https://chromedriver.chromium.org/downloads").read()
         except ssl.SSLError as e:
-            response = urlopen("https://sites.google.com/a/chromium.org/chromedriver/downloads").read()
+            response = urlopen("https://chromedriver.chromium.org/downloads").read()
         #download second latest version,most recent is sometimes not out to public yet
 
         latest_version = re.findall(b"ChromeDriver \d{2,3}\.0\.\d{4}\.\d+",response)[driver_dl_index].decode().split()[1]
@@ -88,6 +88,7 @@ class Driver:
             Driver.__download_driver(path, system)
 
         options = webdriver.ChromeOptions()
+        options.binary_location = "/usr/bin/chromium-browser"
         options.add_argument("--disable-extensions")
         options.add_argument("--window-size=1280,1024")
         options.add_argument("--log-level=3")

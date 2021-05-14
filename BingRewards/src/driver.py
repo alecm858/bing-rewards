@@ -88,7 +88,6 @@ class Driver:
             Driver.__download_driver(path, system)
 
         options = webdriver.ChromeOptions()
-        options.binary_location = "/usr/bin/chromium-browser"
         options.add_argument("--disable-extensions")
         options.add_argument("--window-size=1280,1024")
         options.add_argument("--log-level=3")
@@ -117,9 +116,12 @@ class Driver:
                 Driver.__download_driver(path, system, driver_dl_index)
                 driver_dl_index += 1
                 if driver_dl_index > 3:
-                    print('Tried downloading the ' + str(driver_dl_index) + ' most recent chrome drivers. None match current Chrome browser version')
-                    print(e)
-                    break
+                    try:
+                        path = "/usr/lib/chromium-browser/chromedriver"
+                    except:
+                        print('Tried downloading the ' + str(driver_dl_index) + ' most recent chrome drivers. None match current Chrome browser version')
+                        print(e)
+                        break
 
         #if not headless:
         #    driver.set_window_position(-2000, 0)

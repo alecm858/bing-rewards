@@ -116,7 +116,7 @@ class Driver:
             except:
                 Driver.__download_driver(path, system, driver_dl_index)
                 driver_dl_index += 1
-                if driver_dl_index > 2:
+                if driver_dl_index > 3:
                     print('Tried downloading the ' + str(driver_dl_index) + ' most recent chrome drivers. None match current Chrome browser version')
                     break
 

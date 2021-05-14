@@ -113,11 +113,12 @@ class Driver:
                 driver = webdriver.Chrome(path, options=options)
                 break
             #driver not up to date with Chrome browser, try different ver
-            except:
+            except Exception as e:
                 Driver.__download_driver(path, system, driver_dl_index)
                 driver_dl_index += 1
                 if driver_dl_index > 3:
                     print('Tried downloading the ' + str(driver_dl_index) + ' most recent chrome drivers. None match current Chrome browser version')
+                    print(e)
                     break
 
         #if not headless:

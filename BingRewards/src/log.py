@@ -138,4 +138,3 @@ class Completion:
         self.web_search = max(self.web_search, completion.web_search)
         self.mobile_search = max(self.mobile_search, completion.mobile_search)
         self.offers = max(self.offers, completion.offers)
-
